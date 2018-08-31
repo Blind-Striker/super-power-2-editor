@@ -3,9 +3,35 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{0511BC8F-9926-4FF6-942F-7F38AD367A26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPEditor", "UI\SPEditor\SPEditor.csproj", "{0402D5B9-25D4-464D-A172-0219A203742E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{14A9F487-E915-4B0B-B545-0CCB44C8AD0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPEditor.Core", "UI\SPEditor.Core\SPEditor.Core.csproj", "{5303C8B6-4F72-4403-B863-52721EF7E053}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0402D5B9-25D4-464D-A172-0219A203742E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0402D5B9-25D4-464D-A172-0219A203742E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0402D5B9-25D4-464D-A172-0219A203742E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0402D5B9-25D4-464D-A172-0219A203742E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5303C8B6-4F72-4403-B863-52721EF7E053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5303C8B6-4F72-4403-B863-52721EF7E053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5303C8B6-4F72-4403-B863-52721EF7E053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5303C8B6-4F72-4403-B863-52721EF7E053}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0402D5B9-25D4-464D-A172-0219A203742E} = {0511BC8F-9926-4FF6-942F-7F38AD367A26}
+		{5303C8B6-4F72-4403-B863-52721EF7E053} = {0511BC8F-9926-4FF6-942F-7F38AD367A26}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84EB9C75-FFCA-4AF2-AC55-F326618ED29B}
