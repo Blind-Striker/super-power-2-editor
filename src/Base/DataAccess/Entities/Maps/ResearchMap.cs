@@ -1,0 +1,112 @@
+﻿using Dapper.FluentMap.Mapping;
+
+namespace SuperPowerEditor.Base.DataAccess.Entities.Maps
+{
+    public class ResearchMap : EntityMap<Research>
+    {
+        public ResearchMap()
+        {
+            Map(p => p.ExpenseNuclearMissiledamage).ToColumn("EXPENSE_NUCLEAR_MISSILEDAMAGE");
+            Map(p => p.ExpenseNuclearMissilepayload).ToColumn("EXPENSE_NUCLEAR_MISSILEPAYLOAD");
+            Map(p => p.ExpenseNuclearMissilepreci).ToColumn("EXPENSE_NUCLEAR_MISSILEPRECI");
+            Map(p => p.ExpenseNuclearMissilerange).ToColumn("EXPENSE_NUCLEAR_MISSILERANGE");
+            Map(p => p.ExpenseNuclearSensors).ToColumn("EXPENSE_NUCLEAR_SENSORS");
+            Map(p => p.ExpenseNuclearSpeed).ToColumn("EXPENSE_NUCLEAR_SPEED");
+            Map(p => p.ExpenseNuclearStealth).ToColumn("EXPENSE_NUCLEAR_STEALTH");
+            Map(p => p.MaxLvlAirArmor).ToColumn("MAX_LVL_AIR_ARMOR");
+            Map(p => p.MaxLvlAirCountermeasures).ToColumn("MAX_LVL_AIR_COUNTERMEASURES");
+            Map(p => p.MaxLvlAirGundamage).ToColumn("MAX_LVL_AIR_GUNDAMAGE");
+            Map(p => p.MaxLvlAirGunprecision).ToColumn("MAX_LVL_AIR_GUNPRECISION");
+            Map(p => p.MaxLvlAirGunrange).ToColumn("MAX_LVL_AIR_GUNRANGE");
+            Map(p => p.MaxLvlAirMissiledamage).ToColumn("MAX_LVL_AIR_MISSILEDAMAGE");
+            Map(p => p.MaxLvlAirMissilepayload).ToColumn("MAX_LVL_AIR_MISSILEPAYLOAD");
+            Map(p => p.MaxLvlAirMissilepreci).ToColumn("MAX_LVL_AIR_MISSILEPRECI");
+            Map(p => p.MaxLvlAirMissilerange).ToColumn("MAX_LVL_AIR_MISSILERANGE");
+            Map(p => p.MaxLvlAirSensors).ToColumn("MAX_LVL_AIR_SENSORS");
+            Map(p => p.MaxLvlAirSpeed).ToColumn("MAX_LVL_AIR_SPEED");
+            Map(p => p.MaxLvlAirStealth).ToColumn("MAX_LVL_AIR_STEALTH");
+            Map(p => p.MaxLvlGroundArmor).ToColumn("MAX_LVL_GROUND_ARMOR");
+            Map(p => p.MaxLvlGroundCountermeasures).ToColumn("MAX_LVL_GROUND_COUNTERMEASURES");
+            Map(p => p.MaxLvlGroundGundamage).ToColumn("MAX_LVL_GROUND_GUNDAMAGE");
+            Map(p => p.MaxLvlGroundGunprecision).ToColumn("MAX_LVL_GROUND_GUNPRECISION");
+            Map(p => p.MaxLvlGroundGunrange).ToColumn("MAX_LVL_GROUND_GUNRANGE");
+            Map(p => p.MaxLvlGroundMissiledamage).ToColumn("MAX_LVL_GROUND_MISSILEDAMAGE");
+            Map(p => p.MaxLvlGroundMissilepayload).ToColumn("MAX_LVL_GROUND_MISSILEPAYLOAD");
+            Map(p => p.MaxLvlGroundMissilepreci).ToColumn("MAX_LVL_GROUND_MISSILEPRECI");
+            Map(p => p.MaxLvlGroundMissilerange).ToColumn("MAX_LVL_GROUND_MISSILERANGE");
+            Map(p => p.MaxLvlGroundSensors).ToColumn("MAX_LVL_GROUND_SENSORS");
+            Map(p => p.MaxLvlGroundSpeed).ToColumn("MAX_LVL_GROUND_SPEED");
+            Map(p => p.MaxLvlGroundStealth).ToColumn("MAX_LVL_GROUND_STEALTH");
+            Map(p => p.MaxLvlNavalArmor).ToColumn("MAX_LVL_NAVAL_ARMOR");
+            Map(p => p.MaxLvlNavalCountermeasures).ToColumn("MAX_LVL_NAVAL_COUNTERMEASURES");
+            Map(p => p.MaxLvlNavalGundamage).ToColumn("MAX_LVL_NAVAL_GUNDAMAGE");
+            Map(p => p.MaxLvlNavalGunprecision).ToColumn("MAX_LVL_NAVAL_GUNPRECISION");
+            Map(p => p.MaxLvlNavalGunrange).ToColumn("MAX_LVL_NAVAL_GUNRANGE");
+            Map(p => p.MaxLvlNavalMissiledamage).ToColumn("MAX_LVL_NAVAL_MISSILEDAMAGE");
+            Map(p => p.MaxLvlNavalMissilepayload).ToColumn("MAX_LVL_NAVAL_MISSILEPAYLOAD");
+            Map(p => p.MaxLvlNavalMissilepreci).ToColumn("MAX_LVL_NAVAL_MISSILEPRECI");
+            Map(p => p.MaxLvlNavalMissilerange).ToColumn("MAX_LVL_NAVAL_MISSILERANGE");
+            Map(p => p.MaxLvlNavalSensors).ToColumn("MAX_LVL_NAVAL_SENSORS");
+            Map(p => p.MaxLvlNavalSpeed).ToColumn("MAX_LVL_NAVAL_SPEED");
+            Map(p => p.MaxLvlNavalStealth).ToColumn("MAX_LVL_NAVAL_STEALTH");
+            Map(p => p.MaxLvlNuclearArmor).ToColumn("MAX_LVL_NUCLEAR_ARMOR");
+            Map(p => p.MaxLvlNuclearCountermeasures).ToColumn("MAX_LVL_NUCLEAR_COUNTERMEASURES");
+            Map(p => p.MaxLvlNuclearGundamage).ToColumn("MAX_LVL_NUCLEAR_GUNDAMAGE");
+            Map(p => p.MaxLvlNuclearGunprecision).ToColumn("MAX_LVL_NUCLEAR_GUNPRECISION");
+            Map(p => p.MaxLvlNuclearGunrange).ToColumn("MAX_LVL_NUCLEAR_GUNRANGE");
+            Map(p => p.MaxLvlNuclearMissiledamage).ToColumn("MAX_LVL_NUCLEAR_MISSILEDAMAGE");
+            Map(p => p.MaxLvlNuclearMissilepayload).ToColumn("MAX_LVL_NUCLEAR_MISSILEPAYLOAD");
+            Map(p => p.MaxLvlNuclearMissilepreci).ToColumn("MAX_LVL_NUCLEAR_MISSILEPRECI");
+            Map(p => p.MaxLvlNuclearMissilerange).ToColumn("MAX_LVL_NUCLEAR_MISSILERANGE");
+            Map(p => p.MaxLvlNuclearSensors).ToColumn("MAX_LVL_NUCLEAR_SENSORS");
+            Map(p => p.MaxLvlNuclearSpeed).ToColumn("MAX_LVL_NUCLEAR_SPEED");
+            Map(p => p.MaxLvlNuclearStealth).ToColumn("MAX_LVL_NUCLEAR_STEALTH");
+            Map(p => p.Id).ToColumn("ID");
+            Map(p => p.ExpenseAir).ToColumn("EXPENSE_AIR");
+            Map(p => p.ExpenseGround).ToColumn("EXPENSE_GROUND");
+            Map(p => p.ExpenseNaval).ToColumn("EXPENSE_NAVAL");
+            Map(p => p.ExpenseNuclear).ToColumn("EXPENSE_NUCLEAR");
+            Map(p => p.ExpenseAirArmor).ToColumn("EXPENSE_AIR_ARMOR");
+            Map(p => p.ExpenseAirCountermeasures).ToColumn("EXPENSE_AIR_COUNTERMEASURES");
+            Map(p => p.ExpenseAirGundamage).ToColumn("EXPENSE_AIR_GUNDAMAGE");
+            Map(p => p.ExpenseAirGunprecision).ToColumn("EXPENSE_AIR_GUNPRECISION");
+            Map(p => p.ExpenseAirGunrange).ToColumn("EXPENSE_AIR_GUNRANGE");
+            Map(p => p.ExpenseAirMissiledamage).ToColumn("EXPENSE_AIR_MISSILEDAMAGE");
+            Map(p => p.ExpenseAirMissilepayload).ToColumn("EXPENSE_AIR_MISSILEPAYLOAD");
+            Map(p => p.ExpenseAirMissilepreci).ToColumn("EXPENSE_AIR_MISSILEPRECI");
+            Map(p => p.ExpenseAirMissilerange).ToColumn("EXPENSE_AIR_MISSILERANGE");
+            Map(p => p.ExpenseAirSensors).ToColumn("EXPENSE_AIR_SENSORS");
+            Map(p => p.ExpenseAirSpeed).ToColumn("EXPENSE_AIR_SPEED");
+            Map(p => p.ExpenseAirStealth).ToColumn("EXPENSE_AIR_STEALTH");
+            Map(p => p.ExpenseGroundArmor).ToColumn("EXPENSE_GROUND_ARMOR");
+            Map(p => p.ExpenseGroundCountermeasures).ToColumn("EXPENSE_GROUND_COUNTERMEASURES");
+            Map(p => p.ExpenseGroundGundamage).ToColumn("EXPENSE_GROUND_GUNDAMAGE");
+            Map(p => p.ExpenseGroundGunprecision).ToColumn("EXPENSE_GROUND_GUNPRECISION");
+            Map(p => p.ExpenseGroundGunrange).ToColumn("EXPENSE_GROUND_GUNRANGE");
+            Map(p => p.ExpenseGroundMissiledamage).ToColumn("EXPENSE_GROUND_MISSILEDAMAGE");
+            Map(p => p.ExpenseGroundMissilepayload).ToColumn("EXPENSE_GROUND_MISSILEPAYLOAD");
+            Map(p => p.ExpenseGroundMissilepreci).ToColumn("EXPENSE_GROUND_MISSILEPRECI");
+            Map(p => p.ExpenseGroundMissilerange).ToColumn("EXPENSE_GROUND_MISSILERANGE");
+            Map(p => p.ExpenseGroundSensors).ToColumn("EXPENSE_GROUND_SENSORS");
+            Map(p => p.ExpenseGroundSpeed).ToColumn("EXPENSE_GROUND_SPEED");
+            Map(p => p.ExpenseGroundStealth).ToColumn("EXPENSE_GROUND_STEALTH");
+            Map(p => p.ExpenseNavalArmor).ToColumn("EXPENSE_NAVAL_ARMOR");
+            Map(p => p.ExpenseNavalCountermeasures).ToColumn("EXPENSE_NAVAL_COUNTERMEASURES");
+            Map(p => p.ExpenseNavalGundamage).ToColumn("EXPENSE_NAVAL_GUNDAMAGE");
+            Map(p => p.ExpenseNavalGunprecision).ToColumn("EXPENSE_NAVAL_GUNPRECISION");
+            Map(p => p.ExpenseNavalGunrange).ToColumn("EXPENSE_NAVAL_GUNRANGE");
+            Map(p => p.ExpenseNavalMissiledamage).ToColumn("EXPENSE_NAVAL_MISSILEDAMAGE");
+            Map(p => p.ExpenseNavalMissilepayload).ToColumn("EXPENSE_NAVAL_MISSILEPAYLOAD");
+            Map(p => p.ExpenseNavalMissilepreci).ToColumn("EXPENSE_NAVAL_MISSILEPRECI");
+            Map(p => p.ExpenseNavalMissilerange).ToColumn("EXPENSE_NAVAL_MISSILERANGE");
+            Map(p => p.ExpenseNavalSensors).ToColumn("EXPENSE_NAVAL_SENSORS");
+            Map(p => p.ExpenseNavalSpeed).ToColumn("EXPENSE_NAVAL_SPEED");
+            Map(p => p.ExpenseNavalStealth).ToColumn("EXPENSE_NAVAL_STEALTH");
+            Map(p => p.ExpenseNuclearArmor).ToColumn("EXPENSE_NUCLEAR_ARMOR");
+            Map(p => p.ExpenseNuclearCountermeasures).ToColumn("EXPENSE_NUCLEAR_COUNTERMEASURES");
+            Map(p => p.ExpenseNuclearGundamage).ToColumn("EXPENSE_NUCLEAR_GUNDAMAGE");
+            Map(p => p.ExpenseNuclearGunprecision).ToColumn("EXPENSE_NUCLEAR_GUNPRECISION");
+            Map(p => p.ExpenseNuclearGunrange).ToColumn("EXPENSE_NUCLEAR_GUNRANGE");
+        }
+    }
+}

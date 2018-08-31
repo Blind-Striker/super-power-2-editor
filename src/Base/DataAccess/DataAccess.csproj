@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <AssemblyName>SuperPowerEditor.Base.DataAccess</AssemblyName>
+    <RootNamespace>SuperPowerEditor.Base.DataAccess</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="firebird.v2-5.embedded\**" />
+    <EmbeddedResource Remove="firebird.v2-5.embedded\**" />
+    <None Remove="firebird.v2-5.embedded\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="Dapper.FluentMap" Version="1.6.0" />
+    <PackageReference Include="DapperExtensions" Version="1.6.3" />
+    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="6.2.0.1" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+  </ItemGroup>
+
+  <Target Name="CopyCustomContent" AfterTargets="Build">
+    <Copy SourceFiles="firebird.v2-5.embedded\aliases.conf" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\fbembed.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\firebird.conf" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\firebird.msg" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\ib_util.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\icudt30.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\icuin30.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\icuuc30.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\msvcp80.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\msvcr80.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\Microsoft.VC80.CRT.manifest" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+
+    <Copy SourceFiles="firebird.v2-5.embedded\intl\fbintl.conf" DestinationFolder="$(OutputPath)\intl" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\intl\fbintl.dll" DestinationFolder="$(OutputPath)\intl" SkipUnchangedFiles="true" />
+
+    <Copy SourceFiles="firebird.v2-5.embedded\udf\fbudf.dll" DestinationFolder="$(OutputPath)\udf" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\udf\fbudf.sql" DestinationFolder="$(OutputPath)\udf" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\udf\fbudf.txt" DestinationFolder="$(OutputPath)\udf" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\udf\ib_udf.dll" DestinationFolder="$(OutputPath)\udf" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\udf\ib_udf.sql" DestinationFolder="$(OutputPath)\udf" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="firebird.v2-5.embedded\udf\ib_udf2.sql" DestinationFolder="$(OutputPath)\udf" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>
