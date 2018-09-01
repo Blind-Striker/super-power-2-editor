@@ -1,6 +1,6 @@
 ﻿namespace SuperPowerEditor.Base.DataAccess.Entities
 {
-    public class Units
+    public class UnitMapping
     {
         public int? Id { get; set; }
         public int? UnitId { get; set; }

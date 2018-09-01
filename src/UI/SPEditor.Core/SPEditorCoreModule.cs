@@ -7,7 +7,7 @@ using SuperPowerEditor.UI.SPEditor.Core.ViewModels;
 
 namespace SuperPowerEditor.UI.SPEditor.Core
 {
-    public class SPEditorModule : Module
+    public class SPEditorCoreModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

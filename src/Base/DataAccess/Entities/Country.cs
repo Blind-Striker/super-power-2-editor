@@ -1,4 +1,6 @@
-﻿namespace SuperPowerEditor.Base.DataAccess.Entities
+﻿using System;
+
+namespace SuperPowerEditor.Base.DataAccess.Entities
 {
     public class Country
     {
@@ -20,7 +22,7 @@
         public string EmigrationClosed { get; set; }
         public double? ImmigrationLevel { get; set; }
         public string ImmigrationClosed { get; set; }
-        public long? NextElection { get; set; }
+        public DateTime? NextElection { get; set; }
         public double? CorruptionLevel { get; set; }
         public double? CorruptionLevelEx { get; set; }
         public string MartialLaw { get; set; }

@@ -5,7 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="24">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open MOD"/>
+                <MenuItem Header="_Close MOD"/>
+                <MenuItem Header="_Save MOD"/>
+                <Separator />
+                <MenuItem Header="E_xit"/>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray DockPanel.Dock="Top"  Height="24">
+            <ToolBar>
+
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar DockPanel.Dock="Bottom"  Height="24">
+
+        </StatusBar>
+        <Grid></Grid>
+    </DockPanel>
 </Window>

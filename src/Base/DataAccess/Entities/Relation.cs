@@ -1,6 +1,6 @@
 ﻿namespace SuperPowerEditor.Base.DataAccess.Entities
 {
-    public class Relations
+    public class Relation
     {
         public int? Id { get; set; }
         public double? Country1 { get; set; }

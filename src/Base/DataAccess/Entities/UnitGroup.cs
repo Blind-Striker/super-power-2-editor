@@ -1,6 +1,6 @@
 ﻿namespace SuperPowerEditor.Base.DataAccess.Entities
 {
-    public class UnitGroups
+    public class UnitGroup
     {
         public int? Id { get; set; }
         public int? GroupId { get; set; }

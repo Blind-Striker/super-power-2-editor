@@ -1,6 +1,6 @@
 ﻿namespace SuperPowerEditor.Base.DataAccess.Entities
 {
-    public class Parties
+    public class PoliticalParty
     {
         public int? Id { get; set; }
         public int? CountryId { get; set; }

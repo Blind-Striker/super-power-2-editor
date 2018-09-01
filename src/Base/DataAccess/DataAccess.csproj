@@ -7,20 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="firebird.v2-5.embedded\**" />
-    <EmbeddedResource Remove="firebird.v2-5.embedded\**" />
-    <None Remove="firebird.v2-5.embedded\**" />
+    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="6.2.0.1" />
+    <PackageReference Include="FirebirdSql.EntityFrameworkCore.Firebird" Version="6.2.0.1" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.2" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.5" />
-    <PackageReference Include="Dapper.FluentMap" Version="1.6.0" />
-    <PackageReference Include="DapperExtensions" Version="1.6.3" />
-    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="6.2.0.1" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <Folder Include="Contracts\" />
+    <Folder Include="Repositories\" />
+
+    <None Include="..\..\..\firebird.v2-5.embedded\**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
-  <Target Name="CopyCustomContent" AfterTargets="Build">
+
+
+  <!--<Target Name="CopyCustomContent" AfterTargets="Build">
     <Copy SourceFiles="firebird.v2-5.embedded\aliases.conf" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
     <Copy SourceFiles="firebird.v2-5.embedded\fbembed.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
     <Copy SourceFiles="firebird.v2-5.embedded\firebird.conf" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
@@ -42,6 +45,6 @@
     <Copy SourceFiles="firebird.v2-5.embedded\udf\ib_udf.dll" DestinationFolder="$(OutputPath)\udf" SkipUnchangedFiles="true" />
     <Copy SourceFiles="firebird.v2-5.embedded\udf\ib_udf.sql" DestinationFolder="$(OutputPath)\udf" SkipUnchangedFiles="true" />
     <Copy SourceFiles="firebird.v2-5.embedded\udf\ib_udf2.sql" DestinationFolder="$(OutputPath)\udf" SkipUnchangedFiles="true" />
-  </Target>
+  </Target>-->
 
 </Project>
