@@ -10,7 +10,7 @@ namespace SuperPowerEditor.UI.SPEditor.Modules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<MainWindow>().As<IMainView>().InstancePerDependency();
-            builder.RegisterType<InfinityActorContext>().As<IInfinityActorContext>().InstancePerDependency();
+            builder.RegisterType<ApplicationActorContext>().As<IApplicationActorContext>().InstancePerDependency();
         }
     }
 }

@@ -3,9 +3,9 @@ using SuperPowerEditor.UI.SPEditor.Core.Contracts;
 
 namespace SuperPowerEditor.UI.SPEditor.Actors
 {
-    public class InfinityActorContext : IInfinityActorContext
+    public class ApplicationActorContext : IApplicationActorContext
     {
-        public InfinityActorContext(ActorSystem actorSystem)
+        public ApplicationActorContext(ActorSystem actorSystem)
         {
             ActorSystem = actorSystem;
         }

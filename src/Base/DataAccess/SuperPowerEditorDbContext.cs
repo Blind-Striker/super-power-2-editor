@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Linq;
+using FirebirdSql.EntityFrameworkCore.Firebird.Extensions;
 using Microsoft.EntityFrameworkCore;
 using SuperPowerEditor.Base.DataAccess.Entities;
 
@@ -7,10 +8,11 @@ namespace SuperPowerEditor.Base.DataAccess
 {
     public class SuperPowerEditorDbContext : DbContext
     {
-        public SuperPowerEditorDbContext(DbContextOptions options)
-            : base(options)
+        private readonly string _connectionString;
+
+        public SuperPowerEditorDbContext(string connectionString)
         {
-            
+            _connectionString = connectionString;
         }
 
         public DbSet<City> Cities { get; set; }
@@ -40,6 +42,11 @@ namespace SuperPowerEditor.Base.DataAccess
         public DbSet<TreatyMember> TreatyMembers { get; set; }
         public DbSet<UnitGroup> UnitGroups { get; set; }
         public DbSet<UnitMapping> UnitMappings { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseFirebird(_connectionString);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

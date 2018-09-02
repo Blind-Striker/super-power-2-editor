@@ -22,9 +22,9 @@ namespace SuperPowerEditorSandbox
                 ClientLibrary = "fbembed.dll"
             }.ToString();
 
-            var dbContextOptions = new DbContextOptionsBuilder().UseFirebird(connectionString).Options;
+            //var dbContextOptions = new DbContextOptionsBuilder().UseFirebird(connectionString).Options;
 
-            SuperPowerEditorDbContext context = new SuperPowerEditorDbContext(dbContextOptions);
+            SuperPowerEditorDbContext context = new SuperPowerEditorDbContext(connectionString);
 
             IQueryable<Design> queryable = context.Designs.Include(design => design.CountryDesignerRef).Where(design => design.CountryDesigner == 177);
 

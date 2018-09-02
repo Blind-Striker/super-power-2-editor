@@ -2,7 +2,7 @@
 
 namespace SuperPowerEditor.UI.SPEditor.Core.Contracts
 {
-    public interface IInfinityActorContext
+    public interface IApplicationActorContext
     {
         ActorSystem ActorSystem { get; }
     }
