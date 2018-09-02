@@ -6,5 +6,7 @@ namespace SuperPowerEditor.UI.SPEditor.Core.Contracts
     {
         ICommand OpenGolemModCommand { get; set; }
         ICommand OpenModCommand { get; set; }
+        bool CountryOperationsEnabled { get; set; }
+        ICommand DesignCommand { get; set; }
     }
 }

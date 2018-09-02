@@ -19,6 +19,11 @@ namespace SuperPowerEditor.Base.DataAccess.Enums
 
         public string Name { get; }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public static readonly DesignType Infantry = new DesignType(1, "Infantry");
         public static readonly DesignType InfantryVehicle = new DesignType(2, "Infantry Vehicle");
         public static readonly DesignType AirDefense = new DesignType(3, "Air Defense");

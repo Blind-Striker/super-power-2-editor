@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using SuperPowerEditor.UI.SPEditor.Core.Contracts;
 
 namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Main
@@ -12,6 +7,9 @@ namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Main
     {
         private ICommand _openGolemModCommand;
         private ICommand _openModCommand;
+        private ICommand _designCommand;
+
+        private bool _countryOperationsEnabled;
 
         public ICommand OpenGolemModCommand
         {
@@ -23,6 +21,18 @@ namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Main
         {
             get => _openModCommand;
             set => RaiseAndSetIfChanged(ref _openModCommand, value);
+        }
+
+        public ICommand DesignCommand
+        {
+            get => _designCommand;
+            set => RaiseAndSetIfChanged(ref _designCommand, value);
+        }
+
+        public bool CountryOperationsEnabled
+        {
+            get => _countryOperationsEnabled;
+            set => RaiseAndSetIfChanged(ref _countryOperationsEnabled, value);
         }
     }
 }

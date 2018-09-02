@@ -1,4 +1,6 @@
-﻿namespace SuperPowerEditor.UI.SPEditor.Core.Contracts
+﻿using System;
+
+namespace SuperPowerEditor.UI.SPEditor.Core.Contracts
 {
     public interface IView
     {

@@ -5,8 +5,6 @@ using System.Waf.Presentation.Services;
 using Autofac;
 using SuperPowerEditor.UI.SPEditor.Core.Contracts;
 using SuperPowerEditor.UI.SPEditor.Core.Presenters;
-using SuperPowerEditor.UI.SPEditor.Core.ViewModels;
-using SuperPowerEditor.UI.SPEditor.Core.ViewModels.Main;
 
 namespace SuperPowerEditor.UI.SPEditor.Core
 {
@@ -15,7 +13,7 @@ namespace SuperPowerEditor.UI.SPEditor.Core
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<MainPresenter>().As<IMainPresenter>().InstancePerDependency();
-            builder.RegisterType<MainViewModel>().As<IMainViewModel>().InstancePerDependency();
+            builder.RegisterType<DesignPresenter>().As<IDesignPresenter>().InstancePerDependency();
 
             builder.RegisterType<FileDialogService>().As<IFileDialogService>().InstancePerDependency();
 
