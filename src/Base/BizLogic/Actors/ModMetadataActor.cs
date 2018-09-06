@@ -6,6 +6,7 @@ using Akka.Actor;
 using SuperPowerEditor.Base.BizLogic.Actors.Commands;
 using SuperPowerEditor.Base.BizLogic.Actors.Events;
 using SuperPowerEditor.Base.BizLogic.Models;
+using Status = SuperPowerEditor.Base.BizLogic.Models.Status;
 
 namespace SuperPowerEditor.Base.BizLogic.Actors
 {
@@ -17,7 +18,7 @@ namespace SuperPowerEditor.Base.BizLogic.Actors
 
         public ModMetadataActor()
         {
-            Receive<ReadModMetadataCommand>(command =>
+            Receive<LoadModMetadataCommand>(command =>
             {
                 bool exists = Directory.Exists(command.Path);
 
@@ -68,7 +69,7 @@ namespace SuperPowerEditor.Base.BizLogic.Actors
 
                 var modMetadata = new ModMetadata(modInfo.Id, modInfo.Name, modInfo.Version, modInfo.Signature, databasePath, stringTableMetadata);
 
-                var readedEvent = new ModMetadataReadedEvent("Success", null, modMetadata);
+                var readedEvent = new ModMetadataLoadedEvent(modMetadata);
 
                 command.Sender.Tell(readedEvent);
             });

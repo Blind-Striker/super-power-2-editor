@@ -6,6 +6,7 @@
         xmlns:main="clr-namespace:SuperPowerEditor.UI.SPEditor.Core.ViewModels.Main;assembly=SuperPowerEditor.UI.SPEditor.Core"
         xmlns:design="clr-namespace:SuperPowerEditor.UI.SPEditor.Core.ViewModels.Design;assembly=SuperPowerEditor.UI.SPEditor.Core"
         xmlns:ucs="clr-namespace:SuperPowerEditor.UI.SPEditor.UserControls"
+        xmlns:contracts="clr-namespace:SuperPowerEditor.UI.SPEditor.Core.Contracts;assembly=SuperPowerEditor.UI.SPEditor.Core"
         x:Class="SuperPowerEditor.UI.SPEditor.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -32,23 +33,36 @@
         </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom"  Height="24"/>
         <Grid/>
-        <xcad:DockingManager Height="347" VerticalAlignment="Top" DocumentsSource="{Binding DesignViewModels}">
+        <!--<TabControl ItemsSource="{Binding TabViewModels}" SelectedItem="{Binding SelectedTabViewModel}">
+            <TabControl.Resources>
+                <DataTemplate DataType="{x:Type design:DesignViewModel}">
+                    <ucs:Designs/>
+                </DataTemplate>
+            </TabControl.Resources>
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding TabHeaderTitle}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>-->
+        <xcad:DockingManager Height="347" VerticalAlignment="Top" DocumentsSource="{Binding TabViewModels}">
             <xcad:DockingManager.Resources>
-                <DataTemplate  DataType="{x:Type design:DesignViewModel}">
-                    <ucs:Designs DataContext="{Binding}"></ucs:Designs>
+                <DataTemplate DataType="{x:Type design:DesignViewModel}">
+                    <ucs:Designs/>
                 </DataTemplate>
             </xcad:DockingManager.Resources>
             <xcad:DockingManager.DocumentHeaderTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{Binding Content.IconSource}" Margin="0,0,4,0"/>
-                        <TextBlock Text="{Binding Content.Title}" />
+                        <TextBlock Text="{Binding Content.TabHeaderTitle}" />
                     </StackPanel>
                 </DataTemplate>
             </xcad:DockingManager.DocumentHeaderTemplate>
             <xcad:DockingManager.LayoutItemContainerStyle>
                 <Style TargetType="{x:Type xcad:LayoutItem}">
                     <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}"></Setter>
+                    <Setter Property="IsSelected" Value="{Binding Model.ContentIsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Style>
             </xcad:DockingManager.LayoutItemContainerStyle>
             <xcad:LayoutRoot>
@@ -59,5 +73,5 @@
                 </xcad:LayoutPanel>
             </xcad:LayoutRoot>
         </xcad:DockingManager>
-    </DockPanel>
+</DockPanel>
 </Window>

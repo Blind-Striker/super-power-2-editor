@@ -32,11 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=6.2.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FirebirdSql.Data.FirebirdClient.6.2.0.1\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=6.3.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FirebirdSql.Data.FirebirdClient.6.3.0\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
-    <Reference Include="FirebirdSql.EntityFrameworkCore.Firebird, Version=6.2.0.0, Culture=neutral, PublicKeyToken=7a73ef09980c56c9, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FirebirdSql.EntityFrameworkCore.Firebird.6.2.0.1\lib\netstandard2.0\FirebirdSql.EntityFrameworkCore.Firebird.dll</HintPath>
+    <Reference Include="FirebirdSql.EntityFrameworkCore.Firebird, Version=6.3.0.0, Culture=neutral, PublicKeyToken=7a73ef09980c56c9, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FirebirdSql.EntityFrameworkCore.Firebird.6.3.0\lib\netstandard2.0\FirebirdSql.EntityFrameworkCore.Firebird.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.EntityFrameworkCore.2.1.2\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>

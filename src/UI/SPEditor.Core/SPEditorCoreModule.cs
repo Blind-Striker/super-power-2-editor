@@ -13,8 +13,6 @@ namespace SuperPowerEditor.UI.SPEditor.Core
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<MainPresenter>().As<IMainPresenter>().InstancePerDependency();
-            builder.RegisterType<DesignPresenter>().As<IDesignPresenter>().InstancePerDependency();
-
             builder.RegisterType<FileDialogService>().As<IFileDialogService>().InstancePerDependency();
 
             builder.Register<Func<Type, IPresenter>>(c =>

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SuperPowerEditor.Base.BizLogic.Actors
+namespace SuperPowerEditor.Base.BizLogic.Models
 {
-    class ModReaderActor
+    public class DesignModel
     {
     }
 }

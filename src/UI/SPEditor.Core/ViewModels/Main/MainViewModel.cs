@@ -1,17 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using SuperPowerEditor.UI.SPEditor.Core.Contracts;
-using SuperPowerEditor.UI.SPEditor.Core.ViewModels.Design;
 
 namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Main
 {
     public class MainViewModel : BaseViewModel, IMainViewModel
     {
         private IMainMenuViewModel _mainMenuViewModel;
-        private ObservableCollection<IViewModel> _designViewModels;
-
-        public MainViewModel()
-        {
-        }
+        private IViewModel _selectedTabViewModel;
+        private ObservableCollection<IViewModel> _tabViewModels;
 
         public IMainMenuViewModel MainMenuViewModel
         {
@@ -19,10 +15,16 @@ namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Main
             set => RaiseAndSetIfChanged(ref _mainMenuViewModel, value);
         }
 
-        public ObservableCollection<IViewModel> DesignViewModels
+        public IViewModel SelectedTabViewModel
         {
-            get => _designViewModels;
-            set => RaiseAndSetIfChanged(ref _designViewModels, value);
+            get => _selectedTabViewModel;
+            set => RaiseAndSetIfChanged(ref _selectedTabViewModel, value);
+        }
+
+        public ObservableCollection<IViewModel> TabViewModels
+        {
+            get => _tabViewModels;
+            set => RaiseAndSetIfChanged(ref _tabViewModels, value);
         }
     }
 }

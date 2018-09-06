@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FirebirdSql.Data.FirebirdClient;
-using FirebirdSql.EntityFrameworkCore.Firebird.Extensions;
 using Microsoft.EntityFrameworkCore;
 using SuperPowerEditor.Base.DataAccess;
 using SuperPowerEditor.Base.DataAccess.Entities;

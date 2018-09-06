@@ -5,6 +5,5 @@ namespace SuperPowerEditor.UI.SPEditor.Core.Contracts
 {
     public interface IDesignPresenter : IPresenter<IDesignView>
     {
-        Action<IDesignPresenter> DesignViewClosed { get; set; }
     }
 }

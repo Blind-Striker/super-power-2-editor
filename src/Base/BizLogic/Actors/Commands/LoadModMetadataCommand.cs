@@ -2,9 +2,9 @@
 
 namespace SuperPowerEditor.Base.BizLogic.Actors.Commands
 {
-    public class ReadModMetadataCommand
+    public class LoadModMetadataCommand
     {
-        public ReadModMetadataCommand(IActorRef sender, ModType modType, string path)
+        public LoadModMetadataCommand(IActorRef sender, ModType modType, string path)
         {
             Sender = sender;
             ModType = modType;
