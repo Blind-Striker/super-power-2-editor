@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Waf.Applications;
 using System.Waf.Applications.Services;
 using System.Windows.Forms;
 using Akka.Actor;
-using SuperPowerEditor.Base.BizLogic.Actors;
-using SuperPowerEditor.Base.BizLogic.Actors.Commands;
+using SuperPowerEditor.Base.BizLogic.Actors.Events;
 using SuperPowerEditor.Base.BizLogic.Models;
-using SuperPowerEditor.Base.DataAccess.Entities;
 using SuperPowerEditor.UI.SPEditor.Core.Actors;
 using SuperPowerEditor.UI.SPEditor.Core.Actors.Commands;
 using SuperPowerEditor.UI.SPEditor.Core.Actors.Events;
@@ -23,41 +19,39 @@ namespace SuperPowerEditor.UI.SPEditor.Core.Presenters
     {
         private readonly IFileDialogService _fileDialogService;
         private readonly IApplicationActorContext _applicationActorContext;
-        private readonly Func<Type, IPresenter> _presenterFactory;
 
         private readonly IMainViewModel _mainViewModel;
-        private IDesignViewModel _currentDesignViewModel;
 
-        private IActorRef _mainPresenterRef;
+        private IActorRef _mainViewActorRef;
 
         private ModMetadata _modMetadata;
 
-        public MainPresenter(IMainView view, IFileDialogService fileDialogService, IApplicationActorContext applicationActorContext, Func<Type, IPresenter> presenterFactory) : base(view)
+        public MainPresenter(IMainView view, IFileDialogService fileDialogService, IApplicationActorContext applicationActorContext) : base(view)
         {
             _fileDialogService = fileDialogService;
             _applicationActorContext = applicationActorContext;
-            _presenterFactory = presenterFactory;
             _mainViewModel = new MainViewModel();
 
             InitializeViewModels();
             InitializeActors();
         }
 
-        internal void OnModMetadataLoaded(ModMetadata eventModMetadata)
+        internal void OnModMetadataLoaded(ModMetadataLoadedEvent eventModMetadata)
         {
-            _modMetadata = eventModMetadata;
-
+            // TODO : check errors;
+            _modMetadata = eventModMetadata.ModMetadata;
             _mainViewModel.MainMenuViewModel.CountryOperationsEnabled = true;
         }
 
-        internal void OnDesignsLoaded(IEnumerable<Design> eventDesigns)
+
+        internal void OnDesignViewClosed(DesignViewClosedEvent @event)
         {
-            _currentDesignViewModel.Designs = new ObservableCollection<Design>(eventDesigns);
+            _mainViewModel.TabViewModels.Remove(@event.DesignViewModel);
         }
 
         private void InitializeActors()
         {
-            _mainPresenterRef = _applicationActorContext.ActorSystem.ActorOf(Props.Create(() => new MainPresenterActor(this)).WithDispatcher("akka.actor.synchronized-dispatcher"));
+            _mainViewActorRef = _applicationActorContext.ActorSystem.ActorOf(Props.Create(() => new MainViewActor(this)).WithDispatcher("akka.actor.synchronized-dispatcher"));
         }
 
         private void InitializeViewModels()
@@ -85,9 +79,9 @@ namespace SuperPowerEditor.UI.SPEditor.Core.Presenters
 
             var golemModFilePath = showOpenFileDialog.FileName;
 
-            var openGolemModCommand = new OpenGolemModCommand(golemModFilePath, _mainPresenterRef);
+            var openGolemModCommand = new OpenGolemModCommand(golemModFilePath, _mainViewActorRef);
 
-            _mainPresenterRef.Tell(openGolemModCommand);
+            _mainViewActorRef.Tell(openGolemModCommand);
         }
 
         private void OnOpenOpenModClicked()
@@ -103,9 +97,9 @@ namespace SuperPowerEditor.UI.SPEditor.Core.Presenters
 
                 string directoryPath = dialog.SelectedPath;
 
-                var openModDirectoryCommand = new OpenModDirectoryCommand(directoryPath, _mainPresenterRef);
+                var openModDirectoryCommand = new OpenModDirectoryCommand(directoryPath, _mainViewActorRef);
 
-                _mainPresenterRef.Tell(openModDirectoryCommand);
+                _mainViewActorRef.Tell(openModDirectoryCommand);
             }
         }
 
@@ -113,24 +107,10 @@ namespace SuperPowerEditor.UI.SPEditor.Core.Presenters
         {
             // TODO: Error handling try remove akka.actor.synchronized-dispatcher
 
-            _currentDesignViewModel = new DesignViewModel()
+            _mainViewModel.TabViewModels.Add(new DesignViewModel(_applicationActorContext, _modMetadata)
             {
-                TabHeaderTitle = "Desings",
-                CloseCommand = new DelegateCommand(OnDesignViewClosed)
-            };
-
-            _mainViewModel.TabViewModels.Add(_currentDesignViewModel);
-            _currentDesignViewModel.ContentIsSelected = true;
-
-            _mainPresenterRef.Tell(new LoadDesignsCommand(_mainPresenterRef, _modMetadata.ModDatabase));
-        }
-
-        private void OnDesignViewClosed()
-        {
-            _mainViewModel.TabViewModels.Remove(_currentDesignViewModel);
-            _currentDesignViewModel = null;
-
-            _mainPresenterRef.Tell(new CloseDesignViewCommand());
+                ContentIsSelected = true
+            });
         }
     }
 }

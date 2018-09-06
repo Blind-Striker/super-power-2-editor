@@ -21,7 +21,7 @@ namespace SuperPowerEditor.UI.SPEditor
                 var builder = new ContainerBuilder();
                 builder.RegisterInstance(actorSys);
 
-                builder.RegisterModule<SPEditorCoreModule>();
+                builder.RegisterModule<SpEditorCoreModule>();
                 builder.RegisterModule<SPEditorModule>();
 
                 IContainer container = builder.Build();

@@ -8,7 +8,7 @@ using SuperPowerEditor.UI.SPEditor.Core.Presenters;
 
 namespace SuperPowerEditor.UI.SPEditor.Core
 {
-    public class SPEditorCoreModule : Module
+    public class SpEditorCoreModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

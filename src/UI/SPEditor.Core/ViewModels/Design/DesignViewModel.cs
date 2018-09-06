@@ -1,17 +1,42 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Waf.Applications;
 using System.Windows.Input;
+using Akka.Actor;
+using SuperPowerEditor.Base.BizLogic.Actors.Commands;
+using SuperPowerEditor.Base.BizLogic.Models;
+using SuperPowerEditor.UI.SPEditor.Core.Actors;
+using SuperPowerEditor.UI.SPEditor.Core.Actors.Commands;
 using SuperPowerEditor.UI.SPEditor.Core.Contracts;
 
 namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Design
 {
-    public class DesignViewModel : BaseViewModel, IDesignViewModel
+    public class DesignViewModel : BaseViewModel, IDesignViewModel, IDisposable
     {
+        private IActorRef _designViewActorRef;
+
         private string _title;
         private string _iconSource;
         private ICommand _closeCommand;
         private ObservableCollection<Base.DataAccess.Entities.Design> _designs;
         private Base.DataAccess.Entities.Design _selectedDesign;
         private bool _contentIsSelected;
+
+        public DesignViewModel(IApplicationActorContext applicationActorContext, ModMetadata modMetadata)
+        {
+            TabHeaderTitle = "Desings";
+
+            _designViewActorRef = applicationActorContext.ActorSystem.ActorOf(Props.Create(() => new DesignsViewActor(this)).WithDispatcher("akka.actor.synchronized-dispatcher"));
+
+            CloseCommand = new DelegateCommand(OnDesignViewClosed);
+
+            _designViewActorRef.Tell(new LoadDesignsCommand(_designViewActorRef, modMetadata.ModDatabase));
+        }
+
+        private void OnDesignViewClosed()
+        {
+            _designViewActorRef.Tell(new CloseDesignsViewCommand(this));
+        }
 
         public string TabHeaderTitle
         {
@@ -47,6 +72,11 @@ namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Design
         {
             get => _designs;
             set => RaiseAndSetIfChanged(ref _designs, value);
+        }
+
+        public void Dispose()
+        {
+            _designViewActorRef = null;
         }
     }
 }
