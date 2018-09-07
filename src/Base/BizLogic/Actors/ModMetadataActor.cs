@@ -67,7 +67,7 @@ namespace SuperPowerEditor.Base.BizLogic.Actors
 
                 var stringTableMetadata = builder.ToImmutable();
 
-                var modMetadata = new ModMetadata(modInfo.Id, modInfo.Name, modInfo.Version, modInfo.Signature, databasePath, stringTableMetadata);
+                var modMetadata = new ModMetadata(modInfo.Id, modInfo.Name, modInfo.Version, modInfo.Signature, dataFolderPath, databasePath, stringTableMetadata);
 
                 var readedEvent = new ModMetadataLoadedEvent(modMetadata);
 

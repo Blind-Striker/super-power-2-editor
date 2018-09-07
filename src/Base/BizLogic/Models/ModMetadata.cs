@@ -4,13 +4,14 @@ namespace SuperPowerEditor.Base.BizLogic.Models
 {
     public class ModMetadata
     {
-        public ModMetadata(string id, string name, string version, string signature, string modDatabase, IImmutableDictionary<string, StringTableMetadata> stringTableMetadata)
+        public ModMetadata(string id, string name, string version, string signature, string dataPath, string modDatabasePath, IImmutableDictionary<string, StringTableMetadata> stringTableMetadata)
         {
             Id = id;
             Name = name;
             Version = version;
             Signature = signature;
-            ModDatabase = modDatabase;
+            DataPath = dataPath;
+            ModDatabasePath = modDatabasePath;
             StringTableMetadata = stringTableMetadata;
         }
 
@@ -22,7 +23,9 @@ namespace SuperPowerEditor.Base.BizLogic.Models
 
         public string Signature { get; }
 
-        public string ModDatabase { get;  }
+        public string DataPath { get; }
+
+        public string ModDatabasePath { get;  }
 
         public IImmutableDictionary<string, StringTableMetadata> StringTableMetadata { get; }
     }

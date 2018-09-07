@@ -33,19 +33,7 @@
         </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom"  Height="24"/>
         <Grid/>
-        <!--<TabControl ItemsSource="{Binding TabViewModels}" SelectedItem="{Binding SelectedTabViewModel}">
-            <TabControl.Resources>
-                <DataTemplate DataType="{x:Type design:DesignViewModel}">
-                    <ucs:Designs/>
-                </DataTemplate>
-            </TabControl.Resources>
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding TabHeaderTitle}" />
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-        </TabControl>-->
-        <xcad:DockingManager Height="347" VerticalAlignment="Top" DocumentsSource="{Binding TabViewModels}">
+        <xcad:DockingManager VerticalAlignment="Top" DocumentsSource="{Binding TabViewModels}">
             <xcad:DockingManager.Resources>
                 <DataTemplate DataType="{x:Type design:DesignViewModel}">
                     <ucs:Designs/>

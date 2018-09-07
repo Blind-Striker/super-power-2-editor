@@ -26,11 +26,11 @@ namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Design
         {
             TabHeaderTitle = "Desings";
 
-            _designViewActorRef = applicationActorContext.ActorSystem.ActorOf(Props.Create(() => new DesignsViewActor(this)).WithDispatcher("akka.actor.synchronized-dispatcher"));
+            _designViewActorRef = applicationActorContext.ActorSystem.ActorOf(Props.Create(() => new DesignsViewActor(this, modMetadata)).WithDispatcher("akka.actor.synchronized-dispatcher"));
 
             CloseCommand = new DelegateCommand(OnDesignViewClosed);
 
-            _designViewActorRef.Tell(new LoadDesignsCommand(_designViewActorRef, modMetadata.ModDatabase));
+            _designViewActorRef.Tell(new LoadDesignsCommand(_designViewActorRef));
         }
 
         private void OnDesignViewClosed()
