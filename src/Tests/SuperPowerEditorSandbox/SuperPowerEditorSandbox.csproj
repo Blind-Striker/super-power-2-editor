@@ -127,6 +127,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Base\BizLogic\BizLogic.csproj">
+      <Project>{223ac443-05e3-46d0-90ba-cf9ed2dd0e37}</Project>
+      <Name>BizLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Base\DataAccess\DataAccess.csproj">
       <Project>{b9032ec6-f580-4dd5-98e5-0d5dbb15a9a3}</Project>
       <Name>DataAccess</Name>

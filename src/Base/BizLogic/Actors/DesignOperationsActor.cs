@@ -2,6 +2,7 @@
 using System.Linq;
 using Akka.Actor;
 using FirebirdSql.Data.FirebirdClient;
+using Microsoft.EntityFrameworkCore;
 using SuperPowerEditor.Base.BizLogic.Actors.Commands;
 using SuperPowerEditor.Base.BizLogic.Actors.Events;
 using SuperPowerEditor.Base.BizLogic.Models;
@@ -28,7 +29,7 @@ namespace SuperPowerEditor.Base.BizLogic.Actors
 
                 using (SuperPowerEditorDbContext context = new SuperPowerEditorDbContext(connectionString))
                 {
-                    List<Design> designs = context.Designs.ToList();
+                    List<Design> designs = context.Designs.Include(nameof(Design.CountryDesignerRef)).ToList();
 
                     command.Sender.Tell(new DesignsLoadedEvent(designs));
                 }

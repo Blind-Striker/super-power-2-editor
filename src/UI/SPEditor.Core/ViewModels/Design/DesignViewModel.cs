@@ -18,8 +18,8 @@ namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Design
         private string _title;
         private string _iconSource;
         private ICommand _closeCommand;
-        private ObservableCollection<Base.DataAccess.Entities.Design> _designs;
-        private Base.DataAccess.Entities.Design _selectedDesign;
+        private ObservableCollection<DesignModel> _designs;
+        private DesignModel _selectedDesign;
         private bool _contentIsSelected;
 
         public DesignViewModel(IApplicationActorContext applicationActorContext, ModMetadata modMetadata)
@@ -62,13 +62,13 @@ namespace SuperPowerEditor.UI.SPEditor.Core.ViewModels.Design
             set => RaiseAndSetIfChanged(ref _contentIsSelected, value);
         }
 
-        public Base.DataAccess.Entities.Design SelectedDesign
+        public DesignModel SelectedDesign
         {
             get => _selectedDesign;
             set => RaiseAndSetIfChanged(ref _selectedDesign, value);
         }
 
-        public ObservableCollection<Base.DataAccess.Entities.Design> Designs
+        public ObservableCollection<DesignModel> Designs
         {
             get => _designs;
             set => RaiseAndSetIfChanged(ref _designs, value);

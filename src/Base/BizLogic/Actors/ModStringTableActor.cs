@@ -1,60 +1,74 @@
-﻿using Akka.Actor;
+﻿using System;
+using Akka.Actor;
 using SuperPowerEditor.Base.BizLogic.Actors.Commands;
+using SuperPowerEditor.Base.BizLogic.Actors.Events;
 using SuperPowerEditor.Base.BizLogic.Models;
 using SuperPowerEditor.Base.BizLogic.StringTable;
 
 namespace SuperPowerEditor.Base.BizLogic.Actors
 {
-    public class ModStringTableActor : ReceiveActor, IWithUnboundedStash
+    public class ModStringTableActor : ReceiveActor
     {
-        private readonly string _dataPath;
-        private readonly SpStringTable _spStringTable;
-
         public ModStringTableActor(ModMetadata modMetadata)
         {
-            _dataPath = modMetadata.DataPath;
-            _spStringTable = new SpStringTable();
+            var dataPath = modMetadata.DataPath;
+            var spStringTable = new SpStringTable();
+            spStringTable.Load(dataPath);
 
-            Become(NotInitialized);
-        }
-
-        public IStash Stash { get; set; }
-
-        private void NotInitialized()
-        {
-            Receive<GetStringTableValueFromIdCommand>(command =>
+            Receive<LoadStringTableValueFromIdCommand>(command =>
             {
-                Become(Initializing);
+                try
+                {
+                    string spString = spStringTable.GetString(command.StId, command.Lang);
 
-                Self.Tell(new InitializeSpStringTable());
+                    //string spString = "Deniz";
+
+                    Sender.Tell(new StringTableValueLoadedEvent(command.StId, spString, command.Lang), Self);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             });
         }
 
-        private void Initializing()
-        {
-            Receive<GetStringTableValueFromIdCommand>(command =>
-            {
-                Stash.Stash();
-            });
 
-            Receive<InitializeSpStringTable>(table =>
-            {
-                _spStringTable.Load(_dataPath);
-                Become(Initialized);
-                Stash.UnstashAll();
-            });
-        }
+        //private void NotInitialized()
+        //{
+        //    Receive<LoadStringTableValueFromIdCommand>(command =>
+        //    {
+        //        Self.Tell(new InitializeSpStringTable());
 
-        private void Initialized()
-        {
-            Receive<GetStringTableValueFromIdCommand>(command =>
-            {
-                string spString = _spStringTable.GetString(command.StId, command.Lang);
+        //        Become(Initializing);
+        //    });
+        //}
 
-                Sender.Tell(spString, Self);
-            });
-        }
+        //private void Initializing()
+        //{
+        //    Receive<LoadStringTableValueFromIdCommand>(command =>
+        //    {
+        //        Stash.Stash();
+        //    });
 
-        private class InitializeSpStringTable { }
+        //    Receive<InitializeSpStringTable>(table =>
+        //    {
+        //        _spStringTable.Load(_dataPath);
+        //        Become(Initialized);
+        //        Stash.UnstashAll();
+        //    });
+        //}
+
+        //private void Initialized()
+        //{
+        //    Receive<LoadStringTableValueFromIdCommand>(command =>
+        //    {
+        //        string spString = _spStringTable.GetString(command.StId, command.Lang);
+
+        //        Sender.Tell(new StringTableValueLoadedEvent(command.StId, spString, command.Lang), Self);
+        //    });
+        //}
+
+        //private class InitializeSpStringTable { }
     }
 }

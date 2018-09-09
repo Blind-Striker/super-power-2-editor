@@ -232,7 +232,7 @@ namespace SuperPowerEditor.Base.BizLogic.StringTable
             }
         }
 
-        internal void Load(string baseDir)
+        public void Load(string baseDir)
         {
             _allStrings.Clear();
             _ids.Clear();
@@ -249,7 +249,7 @@ namespace SuperPowerEditor.Base.BizLogic.StringTable
                 string str = strArray[index1];
                 SpStringTableFile spStringTableFile = new SpStringTableFile();
                 spStringTableFile.Load(str);
-                string language = Regex.Match(str, "StringTable\\.(.*)\\.gst$").Groups[1].Value;
+                string language = Regex.Match(str, "StringTable\\.(.*)\\.gst$", RegexOptions.IgnoreCase).Groups[1].Value;
                 AddLanguage(language);
                 IntegerKeyedStringCollection allString = _allStrings[language];
                 int num1 = 0;

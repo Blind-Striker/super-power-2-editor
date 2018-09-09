@@ -69,7 +69,9 @@ namespace SuperPowerEditor.Base.BizLogic.StringTable
                 binaryReader.BaseStream.Seek(Indices[index2].Offset, SeekOrigin.Begin);
                 Strings[index2] = new string(binaryReader.ReadChars(Indices[index2].Length / 2));
 
-                if (Strings[index2][checked(Indices[index2].Length / 2 - 1)] == char.MinValue)
+                int i = checked(Indices[index2].Length / 2 - 1);
+
+                if (i >=0 && Strings[index2][i] == char.MinValue)
                 {
                     Strings[index2] = Strings[index2].Substring(0, checked(Indices[index2].Length / 2 - 1));
                 }

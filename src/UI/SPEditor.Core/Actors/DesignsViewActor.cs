@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Akka.Actor;
+using Akka.Streams;
 using Akka.Streams.Dsl;
-using SuperPowerEditor.Base.BizLogic.Actors;
 using SuperPowerEditor.Base.BizLogic.Actors.Commands;
 using SuperPowerEditor.Base.BizLogic.Actors.Events;
 using SuperPowerEditor.Base.BizLogic.Models;
@@ -21,15 +22,12 @@ namespace SuperPowerEditor.UI.SPEditor.Core.Actors
         public DesignsViewActor(DesignViewModel designViewModel, ModMetadata modMetadata)
         {
             // TODO : move to coordinator
-            IActorRef stringTableActorRef = Context.ActorOf(Props.Create(() => new ModStringTableActor(modMetadata)));
-            IActorRef designOperationsActorRef = Context.ActorOf(Props.Create(() => new DesignOperationsActor(modMetadata)));
+            //IActorRef stringTableActorRef = Context.ActorOf(Props.Create(() => new ModStringTableActor(modMetadata)));
+            //IActorRef designOperationsActorRef = Context.ActorOf(Props.Create(() => new DesignOperationsActor(modMetadata)));
 
             int processorCount = Environment.ProcessorCount;
 
-            Receive<LoadDesignsCommand>(command =>
-            {
-                designOperationsActorRef.Tell(command);
-            });
+            Receive<LoadDesignsCommand>(command => { designOperationsActorRef.Tell(command); });
 
             Receive<CloseDesignsViewCommand>(@event =>
             {
@@ -40,29 +38,52 @@ namespace SuperPowerEditor.UI.SPEditor.Core.Actors
                 Context.System.EventStream.Publish(viewClosedEvent);
             });
 
-            Receive<DesignsLoadedEvent>(@event =>
+            Receive<DesignsLoadedEvent>(async @event =>
             {
-                //_designs = @event.Designs;
+                using (var mat = Context.Materializer())
+                {
+                    IList<StringTableValueLoadedEvent> events = new List<StringTableValueLoadedEvent>();
 
-                //foreach (Design design in _designs)
-                //{
-                //    stringTableActorRef
-                //        .Tell(new GetStringTableValueFromIdCommand(design.Name ?? -1, "english"));
-                //}
+                    await Source.From(@event.Designs)
+                        .SelectAsync(processorCount,
+                            design => stringTableActorRef.Ask(
+                                new LoadStringTableValueFromIdCommand(design.Name ?? -1, "english")))
+                        .Select(o => (StringTableValueLoadedEvent) o)
+                        .RunWith(Sink.ForEach<StringTableValueLoadedEvent>(loadedEvent => events.Add(loadedEvent)), mat)
+                        .PipeTo(Self, Self,
+                            () =>
+                            {
+                                IList<DesignModel> designModels = new List<DesignModel>(@event.Designs.Count);
 
-                ////IList<Design> designs = @event.Designs;
-                ////var designsSource = Source.From(designs);
-                ////Source.ActorRef<>()
+                                foreach (Design eventDesign in @event.Designs)
+                                {
+                                    var stringTableValue = events.FirstOrDefault(loadedEvent =>
+                                        loadedEvent.StId == eventDesign.Name);
 
-                ////Flow.Create<>
+                                    DesignModel designModel = new DesignModel(eventDesign.Id, eventDesign.DesignId,
+                                        eventDesign.CountryDesignerRef?.Code, eventDesign.TypeRef,
+                                        stringTableValue?.StValue,
+                                        eventDesign.Speed, eventDesign.Sensors, eventDesign.GunRange,
+                                        eventDesign.GunPrecision, eventDesign.GunDamage, eventDesign.MissilePayload,
+                                        eventDesign.MissileRange, eventDesign.MissilePrecision,
+                                        eventDesign.MissileDamage, eventDesign.Stealth, eventDesign.Countermeasures,
+                                        eventDesign.Armor, eventDesign.Piece1, eventDesign.Piece2, eventDesign.Piece3,
+                                        eventDesign.Texture);
 
-                ////designsSource
-                ////    .SelectAsync(processorCount, design => stringTableActorRef.Ask(new GetStringTableValueFromIdCommand(design.Name ?? -1, "english")))
-                ////    .Select(o => o.ToString())
-                ////    .
+                                    designModels.Add(designModel);
+                                }
 
-                designViewModel.Designs = new ObservableCollection<Design>(@event.Designs);
+                                designViewModel.Designs = new ObservableCollection<DesignModel>(designModels);
+
+                                return designModels;
+                            });
+                }
             });
+        }
+
+        protected override void PreStart()
+        {
+            base.PreStart();
         }
     }
 }

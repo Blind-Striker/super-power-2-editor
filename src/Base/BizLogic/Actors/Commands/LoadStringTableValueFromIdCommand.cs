@@ -1,8 +1,8 @@
 ﻿namespace SuperPowerEditor.Base.BizLogic.Actors.Commands
 {
-    public class GetStringTableValueFromIdCommand
+    public class LoadStringTableValueFromIdCommand
     {
-        public GetStringTableValueFromIdCommand(int stId, string lang)
+        public LoadStringTableValueFromIdCommand(int stId, string lang)
         {
             StId = stId;
             Lang = lang;
